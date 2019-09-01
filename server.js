@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { makeExecutableSchema } = require('graphql-tools');
+
+// const { checkAuthAndResolve, checkScopesAndResolve } = require('./resolvers');
+const { getCategories, getQuoteForCategory, getRandomQuote, getQuotesBySearch } = require('./controllers')
 const axios = require('axios');
 
 const app = express();
@@ -29,32 +32,16 @@ type Query {
 const resolvers = {
   Query: {
     categories: (_, args, context) => {
-      return axios.get('https://api.chucknorris.io/jokes/categories/')
-        .then(res => {
-          console.log(res.data)
-          return res.data
-        })
+      return getCategories()
     },
     quoteForCategory: (_, { category }, context) => {
-      return axios.get('https://api.chucknorris.io/jokes/random', { params: { category: category } })
-        .then(res => {
-          console.log(res.data)
-          return res.data
-        })
+      return getQuoteForCategory({category});
     },
     randomQuote: (_, args, context) => {
-      return axios.get(`https://api.chucknorris.io/jokes/random`)
-        .then(res => {
-          console.log(res.data)
-          return res.data
-        })
+      return getRandomQuote()
     },
-    searchQuote: (_, {search}, context) => {
-      return axios.get('https://api.chucknorris.io/jokes/search',{params:{query:search}})
-          .then(res => {
-            console.log(res)
-            return res.data.result
-          })
+    searchQuote: (_, { search }, context) => {
+      return getQuotesBySearch(search)
     }
 
   }

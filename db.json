@@ -1,9 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
-      "email":"test@mail.com",
-      "password":"123"
+      "username": "RuWander",
+      "email": "r@mail.com",
+      "password": "$2b$10$PtKyFvyldcqyFJTtAAwwpubX1PaNz2R9i9uP083NSvh30eQwXs2OO",
+      "id": 1
+    },
+    {
+      "username": "RuWander2",
+      "email": "ru@mail.com",
+      "password": "$2b$10$DM6jevZ2xQjm5Ul/NIk4junpQgItjndEYq53RD5/PP75Uk5wumDa.",
+      "id": 2
     }
   ]
 }
